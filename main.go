@@ -9,13 +9,16 @@ import (
 )
 
 func main() {
+	// Note store initialization happens here
+	store.InitializeStore()
+
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Welcome to the URL Shortener API",
 		})
 	})
-
+ 
 	r.POST("/create-short-url", func(c *gin.Context) {
 		handler.CreateShortUrl(c)
 	})
@@ -23,9 +26,6 @@ func main() {
 	r.GET("/:shortUrl", func(c *gin.Context) {
 		handler.HandleShortUrlRedirect(c)
 	})
-
-	// Note store initialization happens here
-	store.InitializeStore()
 
 	err := r.Run(":8100")
 	if err != nil {
