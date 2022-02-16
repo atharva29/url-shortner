@@ -11,10 +11,12 @@ import (
 	"github.com/url-shortner/utils"
 )
 
+// UrlCreationRequest request object for url-shortner
 type UrlCreationRequest struct {
 	LongUrl string `json:"long_url" binding:"required"`
 }
 
+// appendHTTPSIfNotExists add https header if not present
 func appendHTTPSIfNotExists(longURL string) string {
 	if !strings.Contains(longURL, "https://") || !strings.Contains(longURL, "http://") {
 		return "https://" + longURL
@@ -22,6 +24,7 @@ func appendHTTPSIfNotExists(longURL string) string {
 	return longURL
 }
 
+// CreateShortUrl creates short URL from long URL coming from request and stores in text file
 func CreateShortUrl(c *gin.Context) {
 	var creationRequest UrlCreationRequest
 	if err := c.ShouldBindJSON(&creationRequest); err != nil {
@@ -40,6 +43,7 @@ func CreateShortUrl(c *gin.Context) {
 	})
 }
 
+// HandleShortUrlRedirect retrieves ShortURL from store and redirects to long URL
 func HandleShortUrlRedirect(c *gin.Context) {
 	shortUrl := c.Param("shortUrl")
 	initialUrl, err := store.RetrieveInitialUrl(shortUrl)

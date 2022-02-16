@@ -7,12 +7,10 @@ import (
 	"os"
 )
 
-type StorageService struct {
-	URLMapping map[string]string
-}
-
+// fileName stores the name of file where mapping is stored
 const fileName = "store.txt"
 
+// InitializeStore creates the store file if not present
 func InitializeStore() {
 	if _, err := os.Stat(fmt.Sprintf("./%s", fileName)); err == nil {
 		return
@@ -21,6 +19,7 @@ func InitializeStore() {
 	_ = ioutil.WriteFile(fileName, file, 0644)
 }
 
+// SaveUrlMapping saves the mapping of shortURL with respect to longURL
 func SaveUrlMapping(shortUrl string, originalUrl string) error {
 	data, err := readJSONFromFile()
 	if err != nil {
@@ -34,6 +33,7 @@ func SaveUrlMapping(shortUrl string, originalUrl string) error {
 	return nil
 }
 
+// RetrieveInitialUrl retrieves the longURL from text file
 func RetrieveInitialUrl(shortUrl string) (string, error) {
 	data, err := readJSONFromFile()
 	if err != nil {
@@ -45,6 +45,7 @@ func RetrieveInitialUrl(shortUrl string) (string, error) {
 	return data[shortUrl], nil
 }
 
+// readJSONFromFile reads data from file
 func readJSONFromFile() (map[string]string, error) {
 	plan, _ := ioutil.ReadFile(fileName)
 	var data map[string]string

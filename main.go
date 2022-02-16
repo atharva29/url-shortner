@@ -30,7 +30,7 @@ func main() {
 	r.GET("/:shortUrl", func(c *gin.Context) {
 		handler.HandleShortUrlRedirect(c)
 	})
-
+	
 	err := r.Run(utils.HTTPPort)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to start the web server - Error: %v", err))
