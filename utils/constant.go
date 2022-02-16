@@ -4,4 +4,4 @@ package utils
 const HTTPPort = ":8100"
 
 // Host stores the host address
-const Host = "http://localhost:" + HTTPPort + "/"
+const Host = "http://localhost:8100/"
