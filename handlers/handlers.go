@@ -8,6 +8,7 @@ import (
 
 	shortener "github.com/url-shortner/shortner"
 	"github.com/url-shortner/store"
+	"github.com/url-shortner/utils"
 )
 
 type UrlCreationRequest struct {
@@ -15,7 +16,7 @@ type UrlCreationRequest struct {
 }
 
 func appendHTTPSIfNotExists(longURL string) string {
-	if !strings.Contains(longURL, "https://") {
+	if !strings.Contains(longURL, "https://") || !strings.Contains(longURL, "http://") {
 		return "https://" + longURL
 	}
 	return longURL
@@ -33,10 +34,9 @@ func CreateShortUrl(c *gin.Context) {
 	shortUrl := shortener.GenerateShortLink(creationRequest.LongUrl)
 	store.SaveUrlMapping(shortUrl, creationRequest.LongUrl)
 
-	host := "http://localhost:8100/"
 	c.JSON(200, gin.H{
 		"message":   "short url created successfully",
-		"short_url": host + shortUrl,
+		"short_url": utils.Host + shortUrl,
 	})
 }
 
