@@ -11,8 +11,8 @@ URL shortner : Shortens the URL (by hashing & encoding) and stores the mapping o
 `localhost:8100/create-short-url` 
 - pass `long_url` in body
 example: 
-URL : localhost:8100/create-short-url
-Body: 
+- URL : localhost:8100/create-short-url
+- Body: 
 {
 	"long_url": "www.facebook.com"
 }
@@ -20,5 +20,5 @@ Body:
 `lcoalhost:8100/:shortUrl`
 - pass `shortUrl` in params
 example
-URL : http://localhost:8100/hB5TnJXi
+- URL : http://localhost:8100/hB5TnJXi
 ---
