@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +11,8 @@ import (
 )
 
 func main() {
+	port := flag.String("p", utils.HTTPPort, "Port for http server, default is 8100")
+	flag.Parse()
 	// Store initialization happens here
 	store.InitializeStore()
 
@@ -31,7 +34,7 @@ func main() {
 		handler.HandleShortUrlRedirect(c)
 	})
 
-	err := r.Run(utils.HTTPPort)
+	err := r.Run(":" + *port)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to start the web server - Error: %v", err))
 	}
