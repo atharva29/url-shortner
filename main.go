@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	handler "github.com/url-shortner/handlers"
@@ -11,7 +12,10 @@ import (
 )
 
 func main() {
-	port := flag.String("p", utils.HTTPPort, "Port for http server, default is 8100")
+	port := utils.HTTPPort
+	if getEnvVariable("p") != "" {
+		port = getEnvVariable("p")
+	}
 	flag.Parse()
 	// Store initialization happens here
 	store.InitializeStore()
@@ -26,7 +30,7 @@ func main() {
 
 	// Endpoint for creating short URL
 	r.POST("/create-short-url", func(c *gin.Context) {
-		handler.CreateShortUrl(c, *port)
+		handler.CreateShortUrl(c, port)
 	})
 
 	// Endpoint for accessing short URLs
@@ -34,8 +38,12 @@ func main() {
 		handler.HandleShortUrlRedirect(c)
 	})
 
-	err := r.Run(":" + *port)
+	err := r.Run(":" + port)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to start the web server - Error: %v", err))
 	}
+}
+
+func getEnvVariable(key string) string {
+	return os.Getenv(key)
 }
