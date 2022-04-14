@@ -9,13 +9,8 @@ URL shortner : Shortens the URL (by hashing & encoding) and stores the mapping o
 
 ---
 `localhost:8100/create-short-url` 
-- pass `long_url` in body
 example: 
-- URL : localhost:8100/create-short-url
-- Body: 
-{
-	"long_url": "www.facebook.com"
-}
+- For registering URL (Post request) example.
 - Request command: `curl -d '{ "long_url": "www.facebook.com" }' -H 'Content-Type: application/json' localhost:8100/create-short-url`
 ---
 `lcoalhost:8100/:shortUrl`
