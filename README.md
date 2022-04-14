@@ -17,5 +17,6 @@ Create short URL using `localhost:8100/create-short-url`
 Redirect to URL using`lcoalhost:8100/:shortUrl`
 - pass `shortUrl` in params
 example
-- URL : http://localhost:8100/hB5TnJXi
+- - Request `curl localhost:8100/QiaaLgq2`
+- - Response `<a href="https://www.facebook.com">Found</a>.`
 ---
