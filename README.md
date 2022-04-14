@@ -1,7 +1,9 @@
 # URL shortner 
 
-To run Docker image run following command
+- To run Docker image run following command
 `docker run -p 8100:8100 atharva29/url-shortner:latest`
+- If one wants to change port of docker, then use environment variable
+`docker run -p 8100:8500 -d -e p=8500  atharva29/url-shortner:latest`
 
 --- 
 
