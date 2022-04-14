@@ -2,8 +2,6 @@ FROM golang:1.17.1-alpine3.14
 WORKDIR /build
 COPY . .
 
-WORKDIR /build
-
 RUN GOOS=linux CGO_ENABLED=0 go build -a -ldflags '-s -w -extldflags "-static"' -o app .
 
 FROM alpine:3.12
