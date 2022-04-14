@@ -8,17 +8,15 @@ To run Docker image run following command
 URL shortner : Shortens the URL (by hashing & encoding) and stores the mapping of long URL & short URL in text file.
 
 ---
-`localhost:8100/create-short-url` 
-- pass `long_url` in body
-example: 
-- URL : localhost:8100/create-short-url
-- Body: 
-{
-	"long_url": "www.facebook.com"
-}
+Create short URL using `localhost:8100/create-short-url`  
+- Example: 
+- - Request `curl -d '{ "long_url": "www.facebook.com" }' -H 'Content-Type: application/json' localhost:8100/create-short-url`
+- - Response `{"message":"short url created successfully","short_url":"http://localhost:8100/QiaaLgq2"}`
+
 ---
-`lcoalhost:8100/:shortUrl`
+Redirect to URL using`lcoalhost:8100/:shortUrl`
 - pass `shortUrl` in params
 example
-- URL : http://localhost:8100/hB5TnJXi
+- - Request `curl localhost:8100/QiaaLgq2`
+- - Response `<a href="https://www.facebook.com">Found</a>.`
 ---
