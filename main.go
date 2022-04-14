@@ -26,7 +26,7 @@ func main() {
 
 	// Endpoint for creating short URL
 	r.POST("/create-short-url", func(c *gin.Context) {
-		handler.CreateShortUrl(c)
+		handler.CreateShortUrl(c, *port)
 	})
 
 	// Endpoint for accessing short URLs
