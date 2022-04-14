@@ -16,6 +16,8 @@ example:
 {
 	"long_url": "www.facebook.com"
 }
+
+`curl -d '{ "long_url": "www.facebook.com" }' -H 'Content-Type: application/json' localhost:8100/create-short-url`
 ---
 `lcoalhost:8100/:shortUrl`
 - pass `shortUrl` in params
