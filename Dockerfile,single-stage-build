@@ -1,0 +1,5 @@
+FROM golang:1.17.1-alpine3.14
+WORKDIR /build  # Change working directory to /build
+COPY . . # Copy all the contents present in build context
+RUN GOOS=linux CGO_ENABLED=0 go build -a -ldflags '-s -w -extldflags "-static"' -o app . #Build the golang application and renamed output as "app"
+CMD ["./app"] # Made "app" accessible command
