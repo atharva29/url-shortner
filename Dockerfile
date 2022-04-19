@@ -1,4 +1,4 @@
-FROM golang:1.17.1-alpine3.14
+FROM golang:1.17.1-alpine3.14 AS builder
 WORKDIR /build
 COPY . .
 
@@ -9,5 +9,5 @@ RUN apk --no-cache add ca-certificates
 RUN chown 1001:1001 /
 USER 1001
 WORKDIR /app
-COPY --from=0 /build/app .
+COPY --from=builder /build/app .
 CMD ["./app"]
